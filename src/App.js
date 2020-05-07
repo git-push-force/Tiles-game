@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { getTiles } from './helpers';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+	const [tiles] = useState(() => getTiles());
+	const [active, setActive] = useState(false);
+	const [founded, setFounded] = useState([]);
+	const [pause, setPause] = useState(false);
+
+	const restart = () => setFounded([]);
+	const handleClick = (item) => {
+		if (founded.find(el => el === item.id) || pause) return;
+
+		setFounded(() => [...founded, item.id]);
+
+		if (!active) return setActive(item);
+
+		setPause(true);
+
+		if (active.color !== item.color) {
+			setTimeout(() => {
+				setFounded(founded.filter(el => el !== active.id && active.id !== item.id));
+				setActive(false);
+				setPause(false);
+			}, 500);
+		} else {
+			setPause(false);
+		}
+
+		return setActive(false);
+	}
+
+	return (
+		<>
+		{founded.length === tiles.length &&
+		<span>
+			<p className='restart' onClick={restart}>Restart</p>
+		</span>
+		}
+		<div className='container'>
+			{tiles.map(item => {
+				return (
+					<div
+						className='tile hidden'
+						key={item.id} 
+						onClick={() => handleClick(item)}
+						style={{
+							backgroundColor: founded.find(el => el === item.id) ? item.color : 'lightgray',
+						}}
+					/>			
+				)
+			})}
+		</div>
+		</>
+	)
 }
 
 export default App;

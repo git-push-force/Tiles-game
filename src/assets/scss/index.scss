@@ -1,0 +1,48 @@
+@font-face {
+    src: url('../fonts//Montserrat-ExtraLight.ttf');
+    font-family: 'MontserratFont'
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    border: 1px solid rgba(211, 211, 211, 0.651);
+    box-shadow: 0 0 20px 0 lightgray;
+    width: 700px;
+    height: 700px;
+    margin-top: 100px;
+    border-radius: 8px;
+    padding: 10px 0 5px 15px;
+}
+
+.tile {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    display: inline-block;
+    border-radius: 8px;
+    box-shadow: 0 0 5px 0 rgb(192, 187, 187);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.restart {
+    position: absolute;
+    left: 50%;
+    top: .5%;
+    font-size: 30px;
+    transform: translateX(-50%);
+    font-family: 'MontserratFont';
+    background-color: #e63946;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        background-color: lighten(#e63946, 15);
+    }
+}
