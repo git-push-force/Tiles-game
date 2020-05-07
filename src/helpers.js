@@ -43,3 +43,29 @@ export const getTiles = (hard) => {
         tiles.sort(() => Math.random() - 0.5)
     )
 }
+
+export const handleClick = (item, founded, pause, setFounded, active, setActive, setPause) => {
+    if (founded.find(el => el === item.id) || pause) return;
+
+    setFounded(() => [...founded, item.id]);
+
+    if (!active) return setActive(item);
+
+    setPause(true);
+
+    if (active.color !== item.color) {
+        setTimeout(() => {
+            setFounded(founded.filter(el => el !== active.id && active.id !== item.id));
+            setActive(false);
+            setPause(false);
+        }, 500);
+    } else {
+        setPause(false);
+    }
+    return setActive(false);
+}
+
+export const restart = (setTiles, setFounded) => {
+    setTiles(getTiles());
+    setFounded([])
+};

@@ -12,3 +12,32 @@
 a {
     color: black;
 }
+
+.restart {
+    position: absolute;
+    left: 50%;
+    top: .5%;
+    font-size: 30px;
+    transform: translateX(-50%);
+    font-family: 'MontserratFont';
+    background-color: #e63946;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        background-color: lighten(#e63946, 15);
+    }
+}
+
+.tile {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    display: inline-block;
+    border-radius: 8px;
+    box-shadow: 0 0 5px 0 rgb(192, 187, 187);
+    cursor: pointer;
+    transition: 0.5s;
+}

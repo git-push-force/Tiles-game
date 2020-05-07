@@ -2,7 +2,13 @@ import './_settings.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SettingsPage = ({ setSettings, settings }) => {
+const SettingsPage = ({ setSettings, settings, restart }) => {
+
+    const handleChange = () => {
+        setSettings(prev => ({ ...prev, hardMode: !prev.hardMode }));
+        restart();
+    }
+
     return (
         <div className='container settings_menu'>
             <h2>Settings</h2>
@@ -13,7 +19,7 @@ const SettingsPage = ({ setSettings, settings }) => {
             <label class='wrapper'>Turn on HARD MODE
                 <input 
                     type='checkbox' 
-                    onChange={() => setSettings(prev => ({ ...prev, hardMode: !prev.hardMode }))}
+                    onChange={handleChange}
                     checked={settings.hardMode}
                 />
                 <span class='checkmark'></span>

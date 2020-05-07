@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getTiles } from './helpers';
 import { Switch, Route } from 'react-router-dom';
 
 import MainPage from './pages/Main';
 import SettingsPage from './pages/Settings'
+import { handleClick, restart, getTiles } from './helpers';
 
 const App = () => {
 
@@ -13,31 +13,9 @@ const App = () => {
 	const [founded, setFounded] = useState([]);
 	const [pause, setPause] = useState(false);
 
-	const restart = () => {
-		setTiles(getTiles());
-		setFounded([])
-	};
-	const handleClick = (item) => {
-		if (founded.find(el => el === item.id) || pause) return;
-
-		setFounded(() => [...founded, item.id]);
-
-		if (!active) return setActive(item);
-
-		setPause(true);
-
-		if (active.color !== item.color) {
-			setTimeout(() => {
-				setFounded(founded.filter(el => el !== active.id && active.id !== item.id));
-				setActive(false);
-				setPause(false);
-			}, 500);
-		} else {
-			setPause(false);
-		}
-		return setActive(false);
-	}
-
+	const restartWithArgs = () => restart(setTiles, setFounded);
+	const handleClickWithArgs = item => handleClick(item, founded, pause, setFounded, active, setActive, setPause);
+	
 	useEffect(() => {
 		setTiles(getTiles(settings.hardMode));
 	}, [settings]);
@@ -48,14 +26,15 @@ const App = () => {
 				<MainPage
 					founded={founded}
 					tiles={tiles}
-					restart={restart}
-					handleClick={handleClick}
+					restart={restartWithArgs}
+					handleClick={handleClickWithArgs}
 				/>
 			</Route>
 			<Route path='/settings'>
 				<SettingsPage
 					setSettings={setSettings}
 					settings={settings}
+					restart={restartWithArgs}
 				/>
 			</Route>
 		</Switch>
