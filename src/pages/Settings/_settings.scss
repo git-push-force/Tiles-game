@@ -1,0 +1,91 @@
+.settings_menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    * {
+        font-family: 'MontserratFont';
+    }
+
+    .settings_backButton {
+        position: absolute;
+        font-size: 30px;
+        left: 30px;
+        top: 10px;
+        cursor: pointer;
+    }
+    
+    h2 {
+        font-size: 3rem;
+    }
+
+    span {
+        align-self: flex-start;
+
+        input {
+            background-color: lightgray;
+        }
+    }
+}
+
+
+.wrapper {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: 'MontserratFont';
+  }
+
+  .wrapper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+
+  .wrapper:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  .wrapper input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .wrapper input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .wrapper .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }

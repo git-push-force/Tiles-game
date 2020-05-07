@@ -1,4 +1,4 @@
-export const getTiles = () => {
+export const getTiles = (hard) => {
     const tiles = [
         { id: 1, color: '#432371' },
         { id: 2, color: '#432371' },
@@ -18,5 +18,28 @@ export const getTiles = () => {
         { id: 16, color: '#f72585' },
     ];
 
-    return tiles.sort(() => Math.random() - 0.5);
+    const tilesHardMode = [
+        { id: 1, color: '#641220' },
+        { id: 2, color: '#641220' },
+        { id: 3, color: '#6e1423' },
+        { id: 4, color: '#6e1423' },
+        { id: 5, color: '#a11d33' },
+        { id: 6, color: '#a11d33' },
+        { id: 7, color: '#b21e35' },
+        { id: 8, color: '#b21e35' },
+        { id: 9, color: '#bd1f36' },
+        { id: 10, color: '#bd1f36' },
+        { id: 11, color: '#c71f37' },
+        { id: 12, color: '#c71f37' },
+        { id: 13, color: '#da1e37' },
+        { id: 14, color: '#da1e37' },
+        { id: 15, color: '#e01e37' },
+        { id: 16, color: '#e01e37' },
+    ];
+
+    return hard ? (
+        tilesHardMode.sort(() => Math.random() - 0.5)
+    ) : (
+        tiles.sort(() => Math.random() - 0.5)
+    )
 }

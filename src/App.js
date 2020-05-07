@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getTiles } from './helpers';
+import { Switch, Route } from 'react-router-dom';
+
+import MainPage from './pages/Main';
+import SettingsPage from './pages/Settings'
 
 const App = () => {
 
+	const [settings, setSettings] = useState({ hardMode: false });
 	const [tiles, setTiles] = useState(() => getTiles());
 	const [active, setActive] = useState(false);
 	const [founded, setFounded] = useState([]);
@@ -30,32 +35,30 @@ const App = () => {
 		} else {
 			setPause(false);
 		}
-
 		return setActive(false);
 	}
 
+	useEffect(() => {
+		setTiles(getTiles(settings.hardMode));
+	}, [settings]);
+
 	return (
-		<>
-		{founded.length === tiles.length &&
-		<span>
-			<p className='restart' onClick={restart}>Restart</p>
-		</span>
-		}
-		<div className='container'>
-			{tiles.map(item => {
-				return (
-					<div
-						className='tile hidden'
-						key={item.id} 
-						onClick={() => handleClick(item)}
-						style={{
-							backgroundColor: founded.find(el => el === item.id) ? item.color : 'lightgray',
-						}}
-					/>			
-				)
-			})}
-		</div>
-		</>
+		<Switch>
+			<Route exact path='/'>
+				<MainPage
+					founded={founded}
+					tiles={tiles}
+					restart={restart}
+					handleClick={handleClick}
+				/>
+			</Route>
+			<Route path='/settings'>
+				<SettingsPage
+					setSettings={setSettings}
+					settings={settings}
+				/>
+			</Route>
+		</Switch>
 	)
 }
 

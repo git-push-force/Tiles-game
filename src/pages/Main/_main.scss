@@ -1,0 +1,14 @@
+.container:not(.settings_menu) {
+    p {
+        position: absolute;
+        font-size: 30px;
+        left: 0;
+        top: -90px;
+        cursor: pointer;
+        font-family: 'MontserratFont';
+    }
+}
+
+a {
+    color: black;
+}
