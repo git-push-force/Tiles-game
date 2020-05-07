@@ -3,12 +3,15 @@ import { getTiles } from './helpers';
 
 const App = () => {
 
-	const [tiles] = useState(() => getTiles());
+	const [tiles, setTiles] = useState(() => getTiles());
 	const [active, setActive] = useState(false);
 	const [founded, setFounded] = useState([]);
 	const [pause, setPause] = useState(false);
 
-	const restart = () => setFounded([]);
+	const restart = () => {
+		setTiles(getTiles());
+		setFounded([])
+	};
 	const handleClick = (item) => {
 		if (founded.find(el => el === item.id) || pause) return;
 
