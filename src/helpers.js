@@ -34,7 +34,7 @@ export const getTiles = (hard) => {
         { id: 13, color: '#da1e37' },
         { id: 14, color: '#da1e37' },
         { id: 15, color: '#e01e37' },
-        { id: 16, color: '#e01e37' },
+        { id: 16, color: '#e01e37' }
     ];
 
     return hard ? (
@@ -65,7 +65,7 @@ export const handleClick = (item, founded, pause, setFounded, active, setActive,
     return setActive(false);
 }
 
-export const restart = (setTiles, setFounded) => {
-    setTiles(getTiles());
-    setFounded([])
+export const restart = (setTiles, setFounded, settings) => {
+    setTiles(getTiles(settings.hardMode));
+    setFounded([]);
 };

@@ -6,18 +6,19 @@ import SettingsPage from './pages/Settings'
 import { handleClick, restart, getTiles } from './helpers';
 
 const App = () => {
-
-	const [settings, setSettings] = useState({ hardMode: false });
+	
+	const [settings, setSettings] = useState({ hardMode: false, shape: 'square' });
 	const [tiles, setTiles] = useState(() => getTiles());
 	const [active, setActive] = useState(false);
 	const [founded, setFounded] = useState([]);
 	const [pause, setPause] = useState(false);
 
-	const restartWithArgs = () => restart(setTiles, setFounded);
+	const restartWithArgs = () => restart(setTiles, setFounded, settings);
 	const handleClickWithArgs = item => handleClick(item, founded, pause, setFounded, active, setActive, setPause);
-	
+
 	useEffect(() => {
-		setTiles(getTiles(settings.hardMode));
+		restartWithArgs();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [settings]);
 
 	return (
@@ -28,6 +29,7 @@ const App = () => {
 					tiles={tiles}
 					restart={restartWithArgs}
 					handleClick={handleClickWithArgs}
+					settings={settings}
 				/>
 			</Route>
 			<Route path='/settings'>
@@ -35,6 +37,7 @@ const App = () => {
 					setSettings={setSettings}
 					settings={settings}
 					restart={restartWithArgs}
+					setTiles={setTiles}
 				/>
 			</Route>
 		</Switch>

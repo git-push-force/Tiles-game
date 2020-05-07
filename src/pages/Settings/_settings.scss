@@ -19,73 +19,120 @@
         font-size: 3rem;
     }
 
-    span {
+    label {
         align-self: flex-start;
-
-        input {
-            background-color: lightgray;
-        }
+        margin-left: 15px;
     }
 }
 
+//checkbox
 
 .wrapper {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-family: 'MontserratFont';
-  }
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-family: 'MontserratFont';
+}
 
-  .wrapper input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
+.wrapper input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
 
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-  }
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+}
 
-  .wrapper:hover input ~ .checkmark {
-    background-color: #ccc;
-  }
+.wrapper:hover input ~ .checkmark {
+	background-color: #ccc;
+}
 
-  .wrapper input:checked ~ .checkmark {
-    background-color: #2196F3;
-  }
+.wrapper input:checked ~ .checkmark {
+	background-color: #2196F3;
+}
 
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
 
-  .wrapper input:checked ~ .checkmark:after {
-    display: block;
-  }
+.wrapper input:checked ~ .checkmark:after {
+	display: block;
+}
 
-  .wrapper .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
+.wrapper .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.settings_shapes {
+	align-self: flex-start;
+	margin-left: 15px;
+}
+
+.settings_shapesTitle {
+	font-size: 22px;
+}
+
+.shape {
+	display: inline-block;
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 8px;
+	background-color: lighten(lightgray, 10);
+	border: 5px solid lightgray;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: .3s;
+
+	&:hover {
+		background-color: darken(lightgray, 5);
+	}
+}
+
+.square {
+	font-size: 35px;
+	top: 150px;
+	right: 280px;
+}
+
+.circle {
+	font-size: 35px;
+	top: 150px;
+	right: 170px;
+}
+
+.activeShape {
+	background-color: lighten(#2196F3, 20);
+	border: 5px solid #2196F3;
+
+	&:hover {
+		background-color: lighten(#2196F3, 20);
+	}
+}

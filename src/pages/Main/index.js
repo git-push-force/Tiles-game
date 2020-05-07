@@ -2,7 +2,7 @@ import './_main.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MainPage = ({ founded, tiles, restart, handleClick }) => {
+const MainPage = ({ founded, tiles, restart, handleClick, settings }) => {
     return (
     <>
     {founded.length === tiles.length &&
@@ -17,11 +17,12 @@ const MainPage = ({ founded, tiles, restart, handleClick }) => {
         {tiles.map(item => {
             return (
                 <div
-                    className='tile hidden'
+                    className='tile'
                     key={item.id} 
                     onClick={() => handleClick(item)}
                     style={{
                         backgroundColor: founded.find(el => el === item.id) ? item.color : 'lightgray',
+                        borderRadius: settings.shape === 'square' ? '8px' : '50%'
                     }}
                 />			
             )

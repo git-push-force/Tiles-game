@@ -2,12 +2,13 @@ import './_settings.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SettingsPage = ({ setSettings, settings, restart }) => {
+import HardModeControl from './components/hardModeControl';
+import TilesFormControl from './components/tilesFormControl';
 
-    const handleChange = () => {
-        setSettings(prev => ({ ...prev, hardMode: !prev.hardMode }));
-        restart();
-    }
+const SettingsPage = ({ setSettings, settings }) => {
+
+    const handleChange = () => setSettings(prev => ({ ...prev, hardMode: !prev.hardMode }));
+    const setShape = shape => setSettings(prev => ({ ...prev, shape }));
 
     return (
         <div className='container settings_menu'>
@@ -16,14 +17,16 @@ const SettingsPage = ({ setSettings, settings, restart }) => {
                 <p className='settings_backButton'>‹ Back</p>
             </Link>
 
-            <label class='wrapper'>Turn on HARD MODE
-                <input 
-                    type='checkbox' 
-                    onChange={handleChange}
-                    checked={settings.hardMode}
-                />
-                <span class='checkmark'></span>
-            </label>
+            <HardModeControl
+                handleChange={handleChange}
+                settings={settings}
+            />
+
+            <TilesFormControl 
+                settings={settings}
+                setShape={setShape}
+            />
+            
         </div>
     )
 }
