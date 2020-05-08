@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import MainPage from './pages/Main';
 import SettingsPage from './pages/Settings'
 import { handleClick, restart, getTiles } from './helpers';
+import { getScore, incScore } from './utils/localStorage';
 
 const App = () => {
 	
@@ -13,6 +14,7 @@ const App = () => {
 	const [tiles, setTiles] = useState(() => getTiles());
 	const [active, setActive] = useState(false);
 	const [founded, setFounded] = useState([]);
+	const [score, setScore] = useState(getScore());
 
 	const restartWithArgs = () => restart(setTiles, setFounded, settings);
 	const handleClickWithArgs = item => handleClick(item, founded, pause, setFounded, active, setActive, setPause);
@@ -21,6 +23,14 @@ const App = () => {
 		restartWithArgs();
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [settings]);
+
+	useEffect(() => {
+		if (founded.length === tiles.length) {
+			incScore();
+			setScore(getScore());
+		};
+
+	}, [founded, tiles]);
 
 	return (
 		<Switch>
@@ -31,6 +41,7 @@ const App = () => {
 					restart={restartWithArgs}
 					handleClick={handleClickWithArgs}
 					settings={settings}
+					score={score}
 				/>
 			</Route>
 			<Route path='/settings'>
