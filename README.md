@@ -1,4 +1,12 @@
-# This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+# Tiles game
+
+### Hard mode and changing the shape of tiles now available
+
+![Empty field](./img/empty.png)
+
+![Winned game](./img/win.png)
+
+## This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
 ## Available Scripts
 
