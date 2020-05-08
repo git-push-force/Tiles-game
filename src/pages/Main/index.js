@@ -2,7 +2,7 @@ import './_main.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MainPage = ({ founded, tiles, restart, handleClick, settings }) => {
+const MainPage = ({ founded, tiles, restart, handleClick, settings, score }) => {
     return (
     <>
     {founded.length === tiles.length &&
@@ -10,6 +10,7 @@ const MainPage = ({ founded, tiles, restart, handleClick, settings }) => {
         <p className='restart' onClick={restart}>Restart</p>
     </span>
     }
+    <p className='scoreCounter'>Wins: {score}</p>
     <div className='container'>
         <Link to='/settings'>
             <p>To settings ›</p>
