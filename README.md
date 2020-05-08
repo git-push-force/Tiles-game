@@ -1,5 +1,7 @@
 # Tiles game
 
+### Hard mode and changing the shape of tiles now available
+
 ![Empty field](./img/empty.png)
 
 ![Winned game](./img/win.png)
