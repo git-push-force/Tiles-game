@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import MainPage from './pages/Main';
 import SettingsPage from './pages/Settings'
@@ -7,11 +8,11 @@ import { handleClick, restart, getTiles } from './helpers';
 
 const App = () => {
 	
-	const [settings, setSettings] = useState({ hardMode: false, shape: 'square' });
+	const settings = useSelector(state => state.settings);
+	const [pause, setPause] = useState(false);
 	const [tiles, setTiles] = useState(() => getTiles());
 	const [active, setActive] = useState(false);
 	const [founded, setFounded] = useState([]);
-	const [pause, setPause] = useState(false);
 
 	const restartWithArgs = () => restart(setTiles, setFounded, settings);
 	const handleClickWithArgs = item => handleClick(item, founded, pause, setFounded, active, setActive, setPause);
@@ -34,7 +35,6 @@ const App = () => {
 			</Route>
 			<Route path='/settings'>
 				<SettingsPage
-					setSettings={setSettings}
 					settings={settings}
 					restart={restartWithArgs}
 					setTiles={setTiles}

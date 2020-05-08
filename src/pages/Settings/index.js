@@ -1,14 +1,19 @@
 import './_settings.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import HardModeControl from './components/hardModeControl';
 import TilesFormControl from './components/tilesFormControl';
 
-const SettingsPage = ({ setSettings, settings }) => {
+import { turnHardMode, setShape } from '../../redux/actions/settings';
 
-    const handleChange = () => setSettings(prev => ({ ...prev, hardMode: !prev.hardMode }));
-    const setShape = shape => setSettings(prev => ({ ...prev, shape }));
+
+const SettingsPage = ({ setSettings, settings }) => {
+    const dispatch = useDispatch();
+
+    const handleChange = () => dispatch(turnHardMode(!settings.hardMode));
+    const changeShape = shape => dispatch(setShape(shape));
 
     return (
         <div className='container settings_menu'>
@@ -24,7 +29,7 @@ const SettingsPage = ({ setSettings, settings }) => {
 
             <TilesFormControl 
                 settings={settings}
-                setShape={setShape}
+                setShape={changeShape}
             />
             
         </div>
